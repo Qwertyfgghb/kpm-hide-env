@@ -61,7 +61,31 @@ KPM_DESCRIPTION("Audit and reject Magisk /sys/fs/selinux/access probes");
 #endif
 
 #define selinux_hook_dbg(fmt, ...) pr_info(fmt, ##__VA_ARGS__)
+/* --- Добавленные структуры для успешной компиляции --- */
+#define SELINUX_KERNEL_STATUS_VERSION 1
 
+struct av_decision {
+    u32 allowed;
+    u32 auditallow;
+    u32 auditdeny;
+    u32 seqno;
+    u32 flags;
+};
+
+struct extended_perms_data {
+    u8 p[8];
+};
+
+struct extended_perms {
+    u8 len;
+    struct extended_perms_data drivers;
+};
+
+struct selinux_load_state {
+    void *policy;
+    void *convert_data;
+};
+/* ----------------------------------------------------- */
 static void *g_funcs[16];
 static int g_hooks;
 struct file;
