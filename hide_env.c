@@ -90,7 +90,7 @@ static void *g_funcs[16];
 static int g_hooks;
 struct file;
 typedef ssize_t (*sel_write_op_fn)(struct file *file, char *buf, size_t size);
-#extern unsigned long *pgtable_entry(unsigned long pgd, unsigned long va);
+// extern unsigned long *pgtable_entry(unsigned long pgd, unsigned long va);
 static sel_write_op_fn *g_write_op_access_slot;
 static sel_write_op_fn *g_write_op_context_slot;
 static sel_write_op_fn g_orig_write_op_access;
@@ -1444,6 +1444,11 @@ static unsigned int ebitmap_next_positive_intel(struct ebitmap *e,
     for ((bit) = ebitmap_start_positive_intel((e), &(n)); \
          (bit) < (e)->highbit; \
          (bit) = ebitmap_next_positive_intel((e), &(n), (bit)))
+
+static inline void security_xperm_set(u8 *p, u8 bit)
+{
+    p[bit / 8] |= 1 << (bit % 8);
+}
 
 static void services_compute_xperms_drivers_intel(struct extended_perms *xperms,
                                                   struct avtab_node *node)
