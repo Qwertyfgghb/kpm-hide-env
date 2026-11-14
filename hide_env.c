@@ -90,7 +90,7 @@ static void *g_funcs[16];
 static int g_hooks;
 struct file;
 typedef ssize_t (*sel_write_op_fn)(struct file *file, char *buf, size_t size);
-##xtern unsigned long *pgtable_entry(unsigned long pgd, unsigned long va);
+#extern unsigned long *pgtable_entry(unsigned long pgd, unsigned long va);
 static sel_write_op_fn *g_write_op_access_slot;
 static sel_write_op_fn *g_write_op_context_slot;
 static sel_write_op_fn g_orig_write_op_access;
