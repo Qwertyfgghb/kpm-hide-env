@@ -18,7 +18,7 @@
 #include <uapi/asm-generic/errno.h>
 #include <uapi/asm-generic/fcntl.h>
 #include <uapi/linux/fs.h>
-#include <security.h>
+#include <linux/security.h>
 #include <ksyms.h>
 #include <hook.h>
 #include <kpmodule.h>
