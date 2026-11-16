@@ -3082,7 +3082,7 @@ static void before_sel_write_access(hook_fargs4_t *a, void *u)
     }
 
     if (!clean_policydb_redirect_supported()) {
-        snapshot_clean_policy("legacy_access");
+        // snapshot_clean_policy("legacy_access"); // DISABLED
         if (legacy_clean_query_should_block(sample, sample_len, true)) {
             n = READ_ONCE(g_clean_access_count) + 1;
             WRITE_ONCE(g_clean_access_count, n);
@@ -3100,7 +3100,7 @@ static void before_sel_write_access(hook_fargs4_t *a, void *u)
         return;
     }
 
-    refresh_clean_policydb("access", true);
+    // refresh_clean_policydb("access", true); // DISABLED
 
     n = READ_ONCE(g_clean_access_count) + 1;
     WRITE_ONCE(g_clean_access_count, n);
@@ -3200,7 +3200,7 @@ static void before_sel_write_context(hook_fargs4_t *a, void *u)
     }
 
     if (!clean_policydb_redirect_supported()) {
-        snapshot_clean_policy("legacy_context");
+        // snapshot_clean_policy("legacy_context"); // DISABLED
         if (legacy_clean_query_should_block(sample, sample_len, false)) {
             n = READ_ONCE(g_clean_access_count) + 1;
             WRITE_ONCE(g_clean_access_count, n);
@@ -3218,7 +3218,7 @@ static void before_sel_write_context(hook_fargs4_t *a, void *u)
         return;
     }
 
-    refresh_clean_policydb("context", true);
+    // refresh_clean_policydb("context", true); // DISABLED
 
     n = READ_ONCE(g_clean_access_count) + 1;
     WRITE_ONCE(g_clean_access_count, n);
