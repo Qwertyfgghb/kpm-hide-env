@@ -4420,25 +4420,7 @@ static long init(const char *args, const char *event, void *__user r)
      * These helpers depend on newer/stateful SELinux ABI. 4.9 already uses the
      * lightweight legacy filters above, so skip these device-specific hooks there.
      */
-    addr = (unsigned long)lookup_name_optional_suffix("context_struct_compute_av");
-    if (!addr)
-        addr = (unsigned long)lookup_name_numbered_suffix("context_struct_compute_av");
-    if (addr) {
-        if (selinux_49_compat_path()) {
-            pr_info("[selinux_hook] skip context_struct_compute_av on 4.9: helper ABI is device-specific\n");
-        } else if (clean_policydb_redirect_supported()) {
-            g_funcs[g_hooks++] = (void *)addr;
-            pr_info("[selinux_hook] hook context_struct_compute_av argc=6\n");
-            hook_wrap((void *)addr, 6, before_context_struct_compute_av_policydb,
-                      after_context_struct_compute_av_policydb, NULL);
-        } else {
-            g_funcs[g_hooks++] = (void *)addr;
-            pr_info("[selinux_hook] hook legacy context_struct_compute_av argc=5\n");
-            hook_wrap((void *)addr, 5, before_context_struct_compute_av_legacy, NULL, NULL);
-        }
-    } else {
-        pr_warn("[selinux_hook] cannot find context_struct_compute_av\n");
-    }
+    ##
 
     addr = (unsigned long)lookup_name_optional_suffix("string_to_context_struct");
     if (addr) {
