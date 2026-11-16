@@ -4420,8 +4420,7 @@ static long init(const char *args, const char *event, void *__user r)
      * These helpers depend on newer/stateful SELinux ABI. 4.9 already uses the
      * lightweight legacy filters above, so skip these device-specific hooks there.
      */
-    ##
-
+    
     addr = (unsigned long)lookup_name_optional_suffix("string_to_context_struct");
     if (addr) {
         if (selinux_49_compat_path()) {
@@ -4436,7 +4435,7 @@ static long init(const char *args, const char *event, void *__user r)
     } else {
         pr_warn("[selinux_hook] cannot find string_to_context_struct\n");
     }
-
+    
     addr = (unsigned long)lookup_name_optional_suffix("selinux_complete_init");
     if (addr) {
         if (selinux_49_compat_path()) {
